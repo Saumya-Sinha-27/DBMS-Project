@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
+from travello.models import Desti
+from travello.models import destination
 
 # Create your views here.
 
@@ -38,7 +40,7 @@ def login(request):
         user = auth.authenticate(username=username, password=password)
         if user is not None:
             auth.login(request, user)
-            return redirect('/')
+            return redirect('/log/'+str(user.id)+'/')
         else:
             messages.info(request, 'Invalid Credentials')
             return redirect('login')
@@ -48,3 +50,20 @@ def login(request):
 def logout(request):
     auth.logout(request)
     return redirect('/')
+
+def add(request, pk, id):
+    if id:
+        print(pk)
+        destina = destination.objects.get(id=pk)
+        user = User.objects.get(id=id)
+        print(destina.name)
+        print(user.username)
+        desti = Desti.objects.create(user_id=user, dest_id=destina)
+        desti.save();
+        return redirect('/log/'+str(user.id)+'/')
+    else:
+        messages.info(request, 'Please Login First !')
+        return redirect('/')
+
+
+

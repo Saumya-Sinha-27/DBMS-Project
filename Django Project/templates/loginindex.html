@@ -18,7 +18,7 @@
 <body>
 
 <div class="super_container">
-	
+
 	<!-- Header -->
 
 	<header class="header">
@@ -36,14 +36,14 @@
 									<li><a href="news.html">News</a></li>
 									{% if user.is_authenticated %}
 										<li><a href="">Hello, {{user.first_name}}</a></li>
-										<li><a href="accounts/logout">Log Out</a></li>
+										<li><a href="/accounts/logout">Log Out</a></li>
 									{% else %}
 									<li><a href="accounts/register">Register</a></li>
 									<li><a href="accounts/login">Log In</a></li>
 									{% endif %}
 								</ul>
 							</nav>
-							<div class="header_phone ml-auto">Call us: 00-56 445 678 33</div>
+							<div class="header_phone ml-auto">Call us: 00-56 445 678 </div>
 
 							<!-- Hamburger -->
 
@@ -94,15 +94,15 @@
 			</ul>
 		</div>
 	</div>
-	
+
 	<!-- Home -->
 
 	<div class="home">
-		
+
 		<!-- Home Slider -->
 		<div class="home_slider_container">
 			<div class="owl-carousel owl-theme home_slider">
-				
+
 				<!-- Slide -->
 				<div class="owl-item">
 					<div class="background_image" style="{% static 'background-image:url(images/home_slider.jpg)' %}"></div>
@@ -233,7 +233,7 @@
 
 						</div>
 					</div>
-				</div>		
+				</div>
 			</div>
 		</div>
 	</div>
@@ -270,20 +270,39 @@
 						</div>
 
 						{% endfor %}
+</div>
+					</div>
+				</div>
+			</div>
+	</div>
+		<div class="destinations" id="mycart">
+		<div class="container">
+			<div class="row">
+				<div class="col text-center">
+					<div class="section_title"><h2>My Cart</h2></div>
+				</div>
+			</div>
+			<div class="row destinations_row">
+				<div class="col">
+					<div class="destinations_container item_grid">
 
 						<!-- Destination -->
+						{% for destt in desti %}
+						<div class="destination item">
+							<div class="destination_image">
+								<img src="{{destt.img.url}}" alt="">
+								{% if destt.offer %}
+								<div class="spec_offer text-center"><a href="#">Special Offer</a></div>
+								{% endif %}
+							</div>
+							<div class="destination_content">
+								<div class="destination_title"><a href="destinations.html">{{destt.name}}</a></div>
+								<div class="destination_subtitle"><p>{{destt.description}}</p></div>
+								<div class="destination_price">From ${{destt.price}}</div>
+								</div>
+						</div>
 
-
-						<!-- Destination -->
-
-
-						<!-- Destination -->
-
-						<!-- Destination -->
-
-
-						<!-- Destination -->
-
+						{% endfor %}
 
 
 					</div>
@@ -291,7 +310,11 @@
 			</div>
 		</div>
 	</div>
-</div>
+
+
+
+
+
 
 	<!-- Testimonials -->
 
@@ -310,7 +333,7 @@
 					<!-- Testimonials Slider -->
 					<div class="testimonials_slider_container">
 						<div class="owl-carousel owl-theme testimonials_slider">
-							
+
 							<!-- Slide -->
 							<div class="owl-item text-center">
 								<div class="testimonial">Lorem ipsum dolor sit amet, consectetur adipiscing elit. lobortis dolor. Cras placerat lectus a posuere aliquet. Curabitur quis vehicula odio.</div>
@@ -365,7 +388,7 @@
 			<div class="row">
 				<div class="col-xl-8">
 					<div class="news_container">
-						
+
 						<!-- News Post -->
 						<div class="news_post d-flex flex-md-row flex-column align-items-start justify-content-start">
 							<div class="news_post_image"><img src="{% static 'images/news_1.jpg' %}" alt=""></div>
